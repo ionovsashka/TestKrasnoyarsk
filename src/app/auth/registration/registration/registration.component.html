@@ -1,0 +1,49 @@
+<div class="registration">
+  <div class="registration__container">
+    <form [formGroup]="registrationForm" (ngSubmit)="registration()" class="registration__form">
+      <div class="registration__controls">
+        <div class="registration__control">
+          <app-input
+            [id]="'login'"
+            [text]="'Логин'"
+            [placeholder]="'example@reqres.in'"
+            [formControlName]="'email'"
+          >
+          </app-input>
+          <div *ngIf="submittingAForm && registrationForm.get('email')?.errors" class="registration__validation">
+            <small *ngIf="registrationForm.get('email')?.errors?.required">Поле обязательно для заполнения</small>
+            <small *ngIf="registrationForm.get('email')?.errors?.incorrectLogin && !registrationForm.get('email')?.errors?.required">Логин должен быть вида example@reqres.in</small>
+          </div>
+        </div>
+        <div class="registration__control">
+          <app-input
+            [id]="'password'"
+            [text]="'Пароль'"
+            [itsPassword]="true"
+            [showPassword]="showPassword"
+            [placeholder]="'Введите пароль'"
+            [formControlName]="'password'"
+          >
+            <button type="button" (click)="showPassword = !showPassword" class="registration__show-password">
+              <img *ngIf="!showPassword; else showpas" src="../../../../assets/img/auth/view-password.svg" alt="">
+              <ng-template #showpas>
+                <img src="../../../../assets/img/auth/hide-password.svg" alt="">
+              </ng-template>
+            </button>
+          </app-input>
+          <div *ngIf="submittingAForm && registrationForm.get('password')?.errors" class="registration__validation">
+            <small *ngIf="registrationForm.get('password')?.errors?.required">Поле обязательно для заполнения</small>
+          </div>
+        </div>
+      </div>
+      <div class="registration__buttons">
+        <div class="registration__button">
+          <button type="submit">Зарегестрироваться</button>
+        </div>
+        <div class="registration__button">
+          <button [routerLink]="'/auth/login'" type="button">Назад</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

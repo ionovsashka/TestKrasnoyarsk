@@ -1,0 +1,81 @@
+<div *ngIf="user" class="user-page">
+  <div class="user-page__avatar">
+    <img [src]="user.avatar" alt="">
+  </div>
+  <div class="user-page__content">
+    <div *ngIf="!edit; else editData" class="user-page__fields fields">
+      <div class="fields__content">
+        <div class="fields__link">
+          <div class="fields__label">Фамилия</div>
+          <div class="fields__text">{{user.last_name}}</div>
+        </div>
+        <div class="fields__link">
+          <div class="fields__label">Имя</div>
+          <div class="fields__text">{{user.first_name}}</div>
+        </div>
+        <div class="fields__link">
+          <div class="fields__label">Email</div>
+          <div class="fields__text">{{user.email}}</div>
+        </div>
+      </div>
+      <div class="user-page__buttons">
+        <div class="user-page__button">
+          <button (click)="editPersonalData()" class="button" type="button">Редактировать</button>
+        </div>
+        <div class="user-page__button">
+          <button [routerLink]="['']" class="button" type="button">Вернуться назад</button>
+        </div>
+      </div>
+    </div>
+    <ng-template #editData>
+      <form [formGroup]="editForm" (ngSubmit)="submitEdit()" *ngIf="editForm" class="user-page__edit edit">
+        <div class="edit__controls">
+          <div class="edit__control">
+            <app-input
+              [id]="'last_name'"
+              [text]="'Фамилия'"
+              [placeholder]="'Введите фамилию'"
+              [formControlName]="'last_name'"
+            >
+            </app-input>
+            <div *ngIf="submittingAForm && this.editForm.get('last_name')?.errors" class="edit__validation">
+              <small *ngIf="this.editForm.get('last_name')?.errors?.required">Поле обязательно для заполнения</small>
+            </div>
+          </div>
+          <div class="edit__control">
+            <app-input
+              [id]="'first_name'"
+              [text]="'Имя'"
+              [placeholder]="'Введите имя'"
+              [formControlName]="'first_name'"
+            >
+            </app-input>
+            <div *ngIf="submittingAForm && this.editForm.get('first_name')?.errors" class="edit__validation">
+              <small *ngIf="this.editForm.get('first_name')?.errors?.required">Поле обязательно для заполнения</small>
+            </div>
+          </div>
+          <div class="edit__control">
+            <app-input
+              [id]="'email'"
+              [text]="'Email'"
+              [placeholder]="'Введите Email'"
+              [formControlName]="'email'"
+            >
+            </app-input>
+            <div *ngIf="submittingAForm && this.editForm.get('email')?.errors" class="edit__validation">
+              <small *ngIf="this.editForm.get('email')?.errors?.required">Поле обязательно для заполнения</small>
+            </div>
+          </div>
+        </div>
+        <div class="edit__buttons">
+          <div class="edit__button">
+            <button (click)="edit = false" class="button" type="button">Отменить</button>
+          </div>
+          <div class="edit__button">
+            <button  class="button" type="submit">Сохранить изменения</button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </div>
+</div>

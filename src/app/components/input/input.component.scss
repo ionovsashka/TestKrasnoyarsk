@@ -1,0 +1,33 @@
+.input__container{
+  position: relative;
+}
+.label{
+  display: inline-block;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #1f1f1f;
+  margin-bottom: 5px;
+}
+.input{
+  font-size: 16px;
+  line-height: 1.5;
+  display: block;
+  color: #55595c;
+  width: 100%;
+  border: 1px solid #dddddd;
+  padding: 15px;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  &::placeholder{
+    color: #55595c;
+  }
+  &:focus{
+    border: 1px solid #6b4897;
+    box-shadow: 0 0 0 0 rgba(107,72,151,.25);
+  }
+  }
+input[type=password]::-ms-reveal,
+input[type=password]::-ms-clear
+{
+  display: none;
+}

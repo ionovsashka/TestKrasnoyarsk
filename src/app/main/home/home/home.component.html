@@ -1,0 +1,31 @@
+<div class="home">
+  <div class="home__container">
+    <div class="home__header">
+      <div class="home__title title">Список пользователей</div>
+      <div class="home__button">
+        <button (click)="logout()" type="button">Выйти</button>
+      </div>
+    </div>
+    <div *ngIf="users" class="home__cards">
+      <div *ngFor="let user of users" class="home__card">
+        <app-user-card
+          [user]="user"
+          (onDelete)="deleteUser($event)"
+        >
+        </app-user-card>
+      </div>
+    </div>
+    <div class="home__resources resources">
+      <div class="resources__title title">Список ресурсов</div>
+      <div class="resources__cards">
+        <div *ngFor="let resource of resources" class="resources__card">
+          <app-resource-card
+            [resource]="resource"
+          >
+
+          </app-resource-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

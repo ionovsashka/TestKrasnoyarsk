@@ -1,0 +1,12 @@
+.resource-card{
+  width: 100%;
+  &__container{
+
+  }
+  &__name{
+    font-size: 20px;
+    line-height: 22px;
+    color: white;
+    padding: 20px;
+  }
+}

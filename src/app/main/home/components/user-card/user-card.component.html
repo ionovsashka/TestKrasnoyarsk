@@ -1,0 +1,22 @@
+<div class="user">
+  <div class="user__container">
+    <div class="user__avatar">
+      <img [src]="user.avatar" alt="">
+    </div>
+    <div class="user__info">
+      <a [routerLink]="['page']" [queryParams]="{id: user.id}" class="user__name">
+        <span class="first-name">{{user.first_name}}</span>
+        <span class="last-name">{{user.last_name}}</span>
+      </a>
+      <div class="user__email">
+        {{user.email}}
+      </div>
+    </div>
+    <div class="user__delete">
+      <button (click)="deleteUser()" type="button">
+        <img src="../../../../../assets/img/home/delete-user.svg" alt="">
+        <span class="delete-span">Удалить пользователя</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<label class="label" for="{{id}}">{{text}}</label>
+<div class="input__container">
+  <input (blur)="blurInput()" (input)="onInputValueChange($event)" *ngIf="!itsPassword; else password" [value]="value" class="input"
+         id="{{id}}" [placeholder]="placeholder" type="text">
+</div>
+<ng-template #password>
+    <input (blur)="blurInput()"  (input)="onInputValueChange($event)"
+           [type]="showPassword ? 'text' : 'password'" [value]="value" class="input"
+           id="{{id}}" [placeholder]="placeholder">
+    <ng-content></ng-content>
+</ng-template>

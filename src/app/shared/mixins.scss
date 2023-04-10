@@ -1,0 +1,16 @@
+@mixin button {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 35px;
+  color: #fff;
+  background-color: #6b4897;
+  padding: 17px 34px;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  &:hover{
+    background-color: #7fcad2;
+  }
+  &:active{
+    background-color: #533874;
+  }
+}

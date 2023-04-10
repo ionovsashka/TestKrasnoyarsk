@@ -1,0 +1,72 @@
+@import "../../shared/mixins.scss";
+.user-page{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  &__avatar{
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+    & > img{
+      width: 164px;
+      height: 164px;
+    }
+  }
+  &__content{
+  }
+  &__button{
+    &:first-child{
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.fields{
+  &__content{
+    margin-bottom: 25px;
+  }
+  &__link{
+    font-size: 16px;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  &__label{
+    line-height: 1.5;
+    margin-bottom: 5px;
+  }
+  &__text{
+    width: 100%;
+    border: 1px solid #dddddd;
+    padding: 15px;
+  }
+}
+
+.edit{
+  text-align: left;
+  &__controls{
+    margin-bottom: 25px;
+  }
+  &__control{
+  }
+  &__validation{
+    margin-bottom: 5px;
+  }
+  &__button{
+    &:first-child{
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.button{
+  width: 100%;
+  @include button;
+}

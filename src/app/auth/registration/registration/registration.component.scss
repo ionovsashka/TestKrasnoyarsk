@@ -1,0 +1,56 @@
+@import "../../../shared/mixins.scss";
+.registration{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  max-width: 450px;
+  &__container{
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+  }
+  &__controls{
+    margin-bottom: 30px;
+  }
+  &__control{
+    width: 100%;
+    margin-bottom: 10px;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+
+  &__show-password{
+    background-color: transparent;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    & img{
+      object-fit: contain;
+    }
+  }
+
+  &__buttons{
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__button{
+    width: 100%;
+    margin-bottom: 15px;
+    & > button{
+      width: 100%;
+      @include button;
+    }
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+  @media (max-width: 480px) {
+    width: 90%;
+  }
+}

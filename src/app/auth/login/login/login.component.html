@@ -1,0 +1,49 @@
+<div class="login">
+  <div class="login__logo">
+    <img src="./assets/img/auth/logo.svg" alt="">
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login__container">
+    <div *ngIf="submittingAForm && (loginForm.invalid || error)" class="login__error">
+      <div *ngIf="submittingAForm && (loginForm.get('email')?.errors?.required || loginForm.get('password')?.errors?.required)" class="login__validation">
+        Данные поля не могут быть пустыми
+      </div>
+      <!--          Данное поле создано для отображения дальнейших ошибок, которые прилетают с бека-->
+      <div *ngIf="submittingAForm && error && !(loginForm.get('email')?.errors || loginForm.get('password')?.errors)" class="login__validation">
+        {{error}}
+      </div>
+    </div>
+    <div class="login__control">
+      <app-input
+        [id]="'login'"
+        [text]="'Логин'"
+        [placeholder]="'Введите ваш логин'"
+        [formControlName]="'email'"
+      >
+      </app-input>
+    </div>
+    <div class="login__control">
+      <app-input
+        [id]="'password'"
+        [text]="'Пароль'"
+        [itsPassword]="true"
+        [showPassword]="showPassword"
+        [placeholder]="'Введите ваш пароль'"
+        [formControlName]="'password'"
+      >
+        <button type="button" (click)="showPassword = !showPassword" class="login__show-password">
+          <img *ngIf="!showPassword; else showpas" src="../../../assets/img/auth/view-password.svg" alt="">
+          <ng-template #showpas>
+            <img src="../../../assets/img/auth/hide-password.svg" alt="">
+          </ng-template>
+        </button>
+      </app-input>
+    </div>
+    <div class="login__button">
+      <button type="submit">Войти</button>
+    </div>
+    <div class="login__no-account">
+      <span>Нет аккаунта?</span>
+      <a [routerLink]="['/auth/registration']">Зарегестрироваться!</a>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,69 @@
+@import "../../../shared/mixins.scss";
+.home{
+  &__container{
+    padding: 20px;
+  }
+  &__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    @media (max-width: 480px) {
+      flex-direction: column-reverse;
+    }
+  }
+  &__title{
+  }
+  &__button{
+    & > button{
+      background-color: transparent;
+      font-size: 24px;
+      line-height: 28px;
+      font-weight: 700;
+      color: white;
+    }
+    @media (max-width: 480px) {
+      align-self: flex-end;
+      margin-bottom: 15px;
+    }
+  }
+
+  &__cards{
+    height: 100%;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+  &__card{
+    margin-bottom: 10px;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+}
+
+.resources{
+  &__title{
+    margin-bottom: 15px;
+  }
+
+  &__cards{
+  }
+
+  &__card{
+    margin-bottom: 15px;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+}
+
+.title{
+  text-align: center;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
+  color: white;
+  @media (max-width: 480px) {
+    font-size: 21px;
+  }
+}
