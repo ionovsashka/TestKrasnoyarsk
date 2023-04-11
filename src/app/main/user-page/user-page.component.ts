@@ -4,6 +4,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 import {DataUserPage, UserPage} from "../../shared/interfaces/user-page/user-page.interfaces";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AlertService} from "../../components/alert/alert.service";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-user-page',
@@ -17,6 +18,8 @@ export class UserPageComponent implements OnInit, OnDestroy{
   edit!: boolean
   editForm!: FormGroup
   submittingAForm!: boolean
+
+  destroy$ = new Subject()
 
 
   constructor(private usersService: UsersService, private route: ActivatedRoute, private alertService: AlertService) {
@@ -40,7 +43,9 @@ export class UserPageComponent implements OnInit, OnDestroy{
   }
 
   getUser(id: number){
-    this.usersService.getUser(id).subscribe((response:UserPage) => {
+    this.usersService.getUser(id).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((response:UserPage) => {
       this.user = response.data
       localStorage.setItem('user', JSON.stringify(this.user))
     })
@@ -62,7 +67,9 @@ export class UserPageComponent implements OnInit, OnDestroy{
     if(this.editForm.invalid){
       return
     }
-    this.usersService.editUser(this.editForm.value).subscribe({
+    this.usersService.editUser(this.editForm.value).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
       next: () => {
         localStorage.setItem('user', JSON.stringify(this.editForm.value))
         this.alertService.success('Пользователь успешно изменен')
@@ -73,6 +80,8 @@ export class UserPageComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
+    this.destroy$.next(true)
+    this.destroy$.complete()
     localStorage.removeItem('user')
   }
 }
